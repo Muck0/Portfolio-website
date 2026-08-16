@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>projects // YOUR NAME</title>
+  <meta name="description" content="Security and ICT projects by YOUR NAME.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+  <div class="crt" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="nav__mark" href="index.html">root@YOURNAME:~$</a>
+    <nav>
+      <ul class="nav__list">
+        <li><a href="index.html#about">./about</a></li>
+        <li><a href="index.html#stack">./stack</a></li>
+        <li><a href="projects.html" class="is-current">./work</a></li>
+        <li><a href="index.html#contact">./contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <p class="crumb"><a href="index.html">~</a> / projects</p>
+
+    <h1 class="page__title">ls -la ./projects</h1>
+    <p class="page__lead">
+      <!-- TODO: one or two sentences. What kind of work do you put here? -->
+      Placeholder. What you build, break and document.
+    </p>
+
+    <div class="grid">
+
+      <!-- Honeypot card: links to the detail page -->
+      <article class="card">
+        <p class="card__meta">2026 // solo // accepted</p>
+        <h2 class="card__title">honeypot monitor</h2>
+        <p class="card__text">
+          <!-- TODO: one sentence. What is it and why does it exist? -->
+          SSH honeypot on a VPS, with alerting and a public threat map.
+        </p>
+        <ul class="card__tags">
+          <li>cowrie</li>
+          <li>wazuh</li>
+          <li>linux</li>
+        </ul>
+        <a class="card__link" href="honeypot.html">open case &rarr;</a>
+      </article>
+
+      <!-- TODO: copy the <article> above for each other project.
+           Point card__link at a new detail page, or at a GitHub repo. -->
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 YOUR NAME</span>
+    <span><a href="index.html">back to index</a></span>
+  </footer>
+
+</body>
+</html>

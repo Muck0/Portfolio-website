@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>honeypot monitor // YOUR NAME</title>
+  <meta name="description" content="SSH honeypot with SIEM alerting and a public threat map. Case study.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+  <div class="crt" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="nav__mark" href="index.html">root@YOURNAME:~$</a>
+    <nav>
+      <ul class="nav__list">
+        <li><a href="index.html#about">./about</a></li>
+        <li><a href="index.html#stack">./stack</a></li>
+        <li><a href="projects.html" class="is-current">./work</a></li>
+        <li><a href="index.html#contact">./contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <p class="crumb"><a href="index.html">~</a> / <a href="projects.html">projects</a> / honeypot</p>
+
+    <h1 class="page__title">honeypot monitor</h1>
+    <p class="page__lead">
+      <!-- TODO: two sentences max. What did you build, and what does it tell you? -->
+      Placeholder. An SSH honeypot that logs what real attackers try, and turns it into alerts and a map.
+    </p>
+
+    <!-- Fact strip: scannable in three seconds -->
+    <dl class="facts">
+      <div><dt>role</dt><dd>solo</dd></div>
+      <div><dt>year</dt><dd>2026</dd></div>
+      <div><dt>stack</dt><dd>Cowrie, Wazuh, Linux</dd></div>
+      <div><dt>status</dt><dd class="ok">live</dd></div>
+    </dl>
+
+    <div class="page__actions">
+      <!-- TODO: put your real GitHub Pages threat map URL here. -->
+      <a class="btn btn--solid" href="#">[ live threat map ]</a>
+      <!-- TODO: repo link. Check the repo for secrets before making it public. -->
+      <a class="btn" href="#">[ source ]</a>
+    </div>
+
+    <!-- ============ SCREENSHOTS ============ -->
+    <!-- TODO: put your images in an img/ folder next to this file.
+         Keep them under ~300 KB each, otherwise the page loads slowly.
+         Every screenshot needs a caption saying what we are looking at,
+         and an alt text describing it for screen readers. -->
+
+    <figure class="shot shot--wide">
+      <img src="img/threat-map.png" alt="World map with markers showing the origin of login attempts" loading="lazy">
+      <figcaption>
+        <!-- TODO: what does this show, and what is notable about it? -->
+        Placeholder caption. Source countries of login attempts over 30 days.
+      </figcaption>
+    </figure>
+
+    <div class="shots">
+
+      <figure class="shot">
+        <img src="img/wazuh-dashboard.png" alt="SIEM dashboard with alert counts over time" loading="lazy">
+        <figcaption>Placeholder. Alert volume per rule level.</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <img src="img/cowrie-session.png" alt="Terminal log of a captured attacker session" loading="lazy">
+        <figcaption>Placeholder. A captured session, commands and all.</figcaption>
+      </figure>
+
+      <!-- TODO: add more <figure class="shot"> blocks. Three to six is plenty. -->
+
+    </div>
+
+    <!-- ============ NOTES ============ -->
+    <section class="notes">
+      <h2 class="section__title">notes</h2>
+
+      <!-- TODO: three to five short blocks. One problem, one fix, per block.
+           This is the part a recruiter actually reads. Keep it concrete. -->
+      <div class="note">
+        <h3>Placeholder problem</h3>
+        <p>What broke, what you tried, what fixed it, what you learned.</p>
+      </div>
+
+      <div class="note">
+        <h3>Placeholder problem</h3>
+        <p>What broke, what you tried, what fixed it, what you learned.</p>
+      </div>
+    </section>
+
+    <p class="crumb crumb--end"><a href="projects.html">&larr; back to projects</a></p>
+
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 YOUR NAME</span>
+    <span><a href="index.html">back to index</a></span>
+  </footer>
+
+</body>
+</html>

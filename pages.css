@@ -1,0 +1,149 @@
+/* =========================================================
+   pages.css
+   Loaded AFTER style.css, so it inherits every variable
+   (--green, --line, --font-display) from :root there.
+   Only put things here that style.css does not already cover.
+   ========================================================= */
+
+.page {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 4rem var(--pad) 5rem;
+}
+
+/* Breadcrumb: shows where you are, terminal path style */
+.crumb {
+  font-size: 0.75rem;
+  color: var(--green-dim);
+  margin: 0 0 2rem;
+}
+
+.crumb a { text-decoration: none; }
+.crumb a:hover { color: var(--green); text-shadow: var(--glow); }
+.crumb--end { margin: 4rem 0 0; }
+
+.page__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.75rem, 8vw, 4.5rem);
+  line-height: 1;
+  color: var(--green);
+  text-shadow: var(--glow);
+  margin: 0 0 1rem;
+}
+
+.page__lead {
+  max-width: 60ch;
+  color: var(--green-dim);
+  margin: 0 0 2.5rem;
+}
+
+.page__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0 0 3.5rem;
+}
+
+/* Marks the current page in the nav */
+.nav__list a.is-current {
+  color: var(--green);
+  text-shadow: var(--glow);
+}
+
+/* =========================================================
+   Fact strip
+   <dl> is a description list: dt is the term, dd the value.
+   Semantically correct beats a pile of divs.
+   ========================================================= */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin: 0 0 3rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.facts dt {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+}
+
+.facts dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+  color: var(--white);
+}
+
+/* =========================================================
+   Screenshots
+   ========================================================= */
+.shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.shot { margin: 0 0 1.5rem; }
+.shot--wide { margin-bottom: 2.5rem; }
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.shot figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--green-dim);
+}
+
+.shot figcaption::before { content: '// '; opacity: 0.6; }
+
+/* ---------------------------------------------------------
+   TODO 4 (you)
+   Give .shot img a hover state so it is clear the images matter.
+   Hint: add a transition for border-color and filter, then on
+   :hover set border-color to var(--green) and try something like
+   filter: brightness(1.08);
+   --------------------------------------------------------- */
+
+/* =========================================================
+   Notes
+   ========================================================= */
+.notes { border-top: 1px solid var(--line); padding-top: 3rem; }
+
+.note {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.note h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--green);
+  margin: 0 0 0.4rem;
+}
+
+.note h3::before { content: '> '; opacity: 0.6; }
+
+.note p { margin: 0; color: var(--green-dim); font-size: 0.875rem; max-width: 70ch; }
+
+.footer a { text-decoration: none; }
+.footer a:hover { color: var(--green); }
+
+/* =========================================================
+   TODO 5 (you): responsive
+   Same story as in style.css. Below 720px .facts gets cramped
+   and .page needs less padding.
+   Hint: reduce the gap on .facts, and check the nav on a phone.
+   ========================================================= */

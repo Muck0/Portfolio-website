@@ -1,72 +1,82 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- TODO: vervang titel en description. Dit is wat Google en LinkedIn tonen. -->
-  <title>JOUW NAAM — ICT &amp; Cybersecurity</title>
-  <meta name="description" content="Portfolio van JOUW NAAM, student ICT met specialisatie cybersecurity.">
+  <!-- TODO: replace the title and description. This is what Google and LinkedIn show. -->
+  <title>YOUR NAME // security &amp; ICT</title>
+  <meta name="description" content="Portfolio of YOUR NAME, ICT student specialising in cybersecurity.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- CRT overlay: scanlines and screen curvature. Purely decorative. -->
+  <div class="crt" aria-hidden="true"></div>
+
   <!-- ============ NAV ============ -->
   <header class="nav">
-    <a class="nav__mark" href="#top">/ JOUW NAAM</a>
+    <a class="nav__mark" href="#top">root@YOURNAME:~$</a>
     <nav>
       <ul class="nav__list">
-        <li><a href="#over">over</a></li>
-        <li><a href="#skills">skills</a></li>
-        <li><a href="#werk">werk</a></li>
-        <li><a href="#contact">contact</a></li>
+        <li><a href="#about">./about</a></li>
+        <li><a href="#stack">./stack</a></li>
+        <li><a href="#work">./work</a></li>
+        <li><a href="#contact">./contact</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="top">
-    <p class="label">Eindhoven, NL · beschikbaar voor stage</p>
-    <h1 class="hero__title">
-      Ik bouw en <em>breek</em><br>
-      digitale systemen.
-    </h1>
-    <!-- TODO: 2 zinnen, geen 6. Wie ben je, wat doe je, wat zoek je. -->
-    <p class="hero__intro">
-      Placeholder. Eerstejaars ICT-student met specialisatie cybersecurity.
-      Vervang deze tekst door iets dat alleen jij kan hebben geschreven.
+    <p class="boot">
+      &gt; initialising session...<br>
+      &gt; location: Eindhoven, NL<br>
+      &gt; status: <span class="ok">available for internship</span>
     </p>
+
+    <h1 class="hero__title">
+      I build systems<br>
+      and I break them.<span class="cursor"></span>
+    </h1>
+
+    <!-- TODO: two sentences, not six. Who you are, what you do, what you are after. -->
+    <p class="hero__intro">
+      Placeholder. First-year ICT student specialising in cybersecurity.
+      Replace this with something only you could have written.
+    </p>
+
     <div class="hero__actions">
-      <a class="btn btn--solid" href="#werk">Bekijk werk</a>
-      <a class="btn" href="#contact">Neem contact op</a>
+      <a class="btn btn--solid" href="#work">[ view work ]</a>
+      <a class="btn" href="#contact">[ get in touch ]</a>
     </div>
   </section>
 
-  <!-- ============ OVER ============ -->
-  <section class="section" id="over">
-    <p class="label">01 / over</p>
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <p class="label">01 // about</p>
     <div class="split">
-      <h2 class="section__title">Achtergrond</h2>
+      <h2 class="section__title">whoami</h2>
       <div class="prose">
-        <!-- TODO: jouw verhaal. Opleiding, eerdere werkervaring, waar je heen wil. -->
-        <p>Placeholder alinea een.</p>
-        <p>Placeholder alinea twee.</p>
+        <!-- TODO: your story. Study, previous experience, where you want to go. -->
+        <p>Placeholder paragraph one.</p>
+        <p>Placeholder paragraph two.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ SKILLS ============ -->
-  <section class="section" id="skills">
-    <p class="label">02 / skills</p>
+  <!-- ============ STACK ============ -->
+  <section class="section" id="stack">
+    <p class="label">02 // stack</p>
     <div class="split">
-      <h2 class="section__title">Wat ik gebruik</h2>
+      <h2 class="section__title">toolkit</h2>
       <div>
         <ul class="tags">
-          <!-- TODO: vul aan met wat je echt kan. Liegen valt op in een gesprek. -->
+          <!-- TODO: only list what you actually know. Bluffing shows up in an interview. -->
           <li>Linux</li>
           <li>Python</li>
           <li>Bash</li>
@@ -78,48 +88,48 @@
     </div>
   </section>
 
-  <!-- ============ WERK ============ -->
-  <section class="section" id="werk">
-    <p class="label">03 / werk</p>
-    <h2 class="section__title section__title--wide">Projecten</h2>
+  <!-- ============ WORK ============ -->
+  <section class="section" id="work">
+    <p class="label">03 // work</p>
+    <h2 class="section__title section__title--wide">projects</h2>
 
     <div class="grid">
 
-      <!-- Voorbeeldkaart: volledig ingevuld als referentie -->
+      <!-- Reference card: fully filled in as an example -->
       <article class="card">
-        <p class="card__meta">2026 · zelfstandig</p>
-        <h3 class="card__title">Projectnaam</h3>
+        <p class="card__meta">2026 // solo</p>
+        <h3 class="card__title">project_name</h3>
         <p class="card__text">
-          Een zin over het probleem, een zin over jouw oplossing, een zin over wat je leerde.
+          One sentence on the problem, one on your solution, one on what you learned.
         </p>
         <ul class="card__tags">
-          <li>Tool</li>
-          <li>Tool</li>
+          <li>tool</li>
+          <li>tool</li>
         </ul>
-        <a class="card__link" href="#">Bekijk &rarr;</a>
+        <a class="card__link" href="#">read more &rarr;</a>
       </article>
 
-      <!-- TODO: kopieer de <article> hierboven twee keer en vul in.
-           Drie sterke projecten slaan zes halve projecten. -->
+      <!-- TODO: copy the <article> above twice and fill it in.
+           Three strong projects beat six half-finished ones. -->
 
     </div>
   </section>
 
   <!-- ============ CONTACT ============ -->
   <section class="section section--contact" id="contact">
-    <p class="label">04 / contact</p>
-    <h2 class="contact__title">Laten we praten.</h2>
+    <p class="label">04 // contact</p>
+    <h2 class="contact__title">$ ping me</h2>
     <ul class="contact__list">
-      <!-- TODO: echte links. Gebruik een mailadres dat je ook echt leest. -->
-      <li><a href="mailto:jij@voorbeeld.nl">jij@voorbeeld.nl</a></li>
-      <li><a href="https://github.com/JOUWNAAM">GitHub</a></li>
-      <li><a href="https://linkedin.com/in/JOUWNAAM">LinkedIn</a></li>
+      <!-- TODO: real links. Use a mailbox you actually read. -->
+      <li><a href="mailto:you@example.com">you@example.com</a></li>
+      <li><a href="https://github.com/YOURNAME">github</a></li>
+      <li><a href="https://linkedin.com/in/YOURNAME">linkedin</a></li>
     </ul>
   </section>
 
   <footer class="footer">
-    <span>&copy; 2026 JOUW NAAM</span>
-    <span>Gebouwd met HTML, CSS en nul plugins.</span>
+    <span>&copy; 2026 YOUR NAME</span>
+    <span>hand-written HTML. no plugins, no bloat.</span>
   </footer>
 
 </body>

@@ -1,18 +1,21 @@
 /* =========================================================
-   Design tokens. Verander deze waarden en de hele site verandert mee.
-   Dit is de reden dat je nooit kleuren hardcodeert in losse regels.
+   Design tokens. Change these and the whole site follows.
+   Want amber instead of green? Change --green and reload.
+   That is the entire point of variables.
    ========================================================= */
 :root {
-  --bg:        #0B0B0D;
-  --surface:   #131317;
-  --line:      #26262C;
-  --text:      #E8E4DC;
-  --muted:     #8B8780;
-  --accent:    #F2542D;
+  --bg:       #04070500;
+  --bg-solid: #040705;
+  --surface:  #0A100C;
+  --line:     #14301F;
+  --green:    #00FF9C;
+  --green-dim:#3F8F6B;
+  --white:    #D6FFE9;
 
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-body:    'Karla', sans-serif;
   --font-mono:    'JetBrains Mono', monospace;
+  --font-display: 'VT323', monospace;
+
+  --glow: 0 0 4px rgba(0, 255, 156, 0.45);
 
   --max: 1080px;
   --pad: 2rem;
@@ -22,31 +25,50 @@
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  background: var(--bg-solid);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 
-  /* Subtiel rasterpatroon op de achtergrond. Geen plaatje, puur CSS. */
-  background-image:
-    linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 64px 64px;
+  /* Faint phosphor glow in the top left, like a CRT warming up */
+  background-image: radial-gradient(
+    ellipse 80% 60% at 20% 0%,
+    rgba(0, 255, 156, 0.07),
+    transparent 70%
+  );
 }
 
 a { color: inherit; }
 
 /* =========================================================
-   Herbruikbare onderdelen
+   CRT overlay
+   Scanlines are drawn with a repeating gradient, no image needed.
+   pointer-events: none means you can still click straight through it.
+   ========================================================= */
+.crt {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.16) 0px,
+    rgba(0, 0, 0, 0.16) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* =========================================================
+   Shared pieces
    ========================================================= */
 .label {
-  font-family: var(--font-mono);
   font-size: 0.75rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--green-dim);
   margin: 0 0 1.5rem;
 }
 
@@ -59,9 +81,12 @@ a { color: inherit; }
 
 .section__title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
   font-weight: 400;
-  line-height: 1.05;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--green);
+  text-shadow: var(--glow);
   margin: 0;
 }
 
@@ -71,7 +96,7 @@ a { color: inherit; }
   gap: 3rem;
 }
 
-.prose p { margin: 0 0 1.2rem; color: var(--muted); }
+.prose p { margin: 0 0 1.2rem; color: var(--green-dim); }
 
 /* =========================================================
    Nav
@@ -84,41 +109,41 @@ a { color: inherit; }
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding: 1.25rem var(--pad);
-  background: rgba(11, 11, 13, 0.75);
-  backdrop-filter: blur(10px);
+  padding: 1.1rem var(--pad);
+  background: rgba(4, 7, 5, 0.85);
+  backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
 }
 
 .nav__mark {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  letter-spacing: 0.05em;
+  font-size: 0.8125rem;
+  color: var(--green);
   text-decoration: none;
+  text-shadow: var(--glow);
 }
 
 .nav__list {
   display: flex;
-  gap: 1.75rem;
+  gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
-  font-family: var(--font-mono);
   font-size: 0.8125rem;
 }
 
 .nav__list a {
   text-decoration: none;
-  color: var(--muted);
-  transition: color 0.2s ease;
+  color: var(--green-dim);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 /* ---------------------------------------------------------
-   TODO 1 (jij)
-   Geef .nav__list a:hover de accentkleur, en teken een lijntje
-   dat van links naar rechts uitgroeit onder de link.
-   Hint: gebruik een ::after met height 1px, width 0, en laat
-   die naar 100% gaan op :hover. Zet position: relative op de <a>.
+   TODO 1 (you)
+   Give .nav__list a:hover the full green plus the glow.
+   Hint: color: var(--green); and text-shadow: var(--glow);
+   Bonus: make the link look selected by inverting it, so
+   background green and color var(--bg-solid). That reads as
+   a highlighted line in a terminal.
    --------------------------------------------------------- */
 
 /* =========================================================
@@ -127,26 +152,48 @@ a { color: inherit; }
 .hero {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 8rem var(--pad) 6rem;
+  padding: 7rem var(--pad) 6rem;
 }
+
+.boot {
+  color: var(--green-dim);
+  font-size: 0.8125rem;
+  line-height: 1.9;
+  margin: 0 0 2rem;
+}
+
+.ok { color: var(--green); text-shadow: var(--glow); }
 
 .hero__title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2.75rem, 9vw, 5.5rem);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
+  font-size: clamp(3rem, 10vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  color: var(--green);
+  text-shadow: 0 0 10px rgba(0, 255, 156, 0.35);
   margin: 0 0 1.75rem;
 }
 
-.hero__title em {
-  font-style: italic;
-  color: var(--accent);
+/* Blinking block cursor. steps(1) makes it snap instead of fade. */
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.85em;
+  margin-left: 0.15em;
+  background: var(--green);
+  vertical-align: baseline;
+  animation: blink 1.05s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%, 50%   { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
 }
 
 .hero__intro {
-  max-width: 46ch;
-  color: var(--muted);
+  max-width: 52ch;
+  color: var(--green-dim);
   margin: 0 0 2.5rem;
 }
 
@@ -154,23 +201,31 @@ a { color: inherit; }
 
 .btn {
   display: inline-block;
-  padding: 0.7rem 1.4rem;
+  padding: 0.65rem 1.3rem;
   border: 1px solid var(--line);
-  font-family: var(--font-mono);
   font-size: 0.8125rem;
   text-decoration: none;
+  color: var(--green-dim);
   transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
-.btn:hover { border-color: var(--accent); color: var(--accent); }
-
-.btn--solid {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg);
+.btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+  text-shadow: var(--glow);
 }
 
-.btn--solid:hover { background: transparent; color: var(--accent); }
+.btn--solid {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--bg-solid);
+  font-weight: 700;
+}
+
+.btn--solid:hover {
+  background: transparent;
+  color: var(--green);
+}
 
 /* =========================================================
    Tags
@@ -185,15 +240,16 @@ a { color: inherit; }
 }
 
 .tags li {
-  font-family: var(--font-mono);
   font-size: 0.8125rem;
-  padding: 0.35rem 0.8rem;
+  padding: 0.3rem 0.75rem;
   border: 1px solid var(--line);
-  color: var(--muted);
+  color: var(--green-dim);
 }
 
+.tags li::before { content: '> '; opacity: 0.6; }
+
 /* =========================================================
-   Projectkaarten
+   Project cards
    ========================================================= */
 .section__title--wide { margin-bottom: 2.5rem; }
 
@@ -206,58 +262,53 @@ a { color: inherit; }
 .card {
   background: var(--surface);
   border: 1px solid var(--line);
-  padding: 1.75rem;
+  padding: 1.6rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  transition: border-color 0.25s ease, transform 0.25s ease;
+  gap: 0.7rem;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.card__meta {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin: 0;
-}
+.card__meta { font-size: 0.7rem; color: var(--green-dim); margin: 0; }
 
 .card__title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.9rem;
+  color: var(--green);
   margin: 0;
 }
 
-.card__text { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.card__text { margin: 0; color: var(--green-dim); font-size: 0.875rem; }
 
 .card__tags {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.6rem;
   list-style: none;
-  margin: 0.25rem 0 0;
+  margin: 0.2rem 0 0;
   padding: 0;
-  font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: var(--muted);
+  color: var(--green-dim);
 }
 
-.card__tags li::before { content: '#'; opacity: 0.5; }
+.card__tags li::before { content: '#'; opacity: 0.55; }
 
 .card__link {
   margin-top: auto;
-  padding-top: 0.75rem;
-  font-family: var(--font-mono);
+  padding-top: 0.7rem;
   font-size: 0.8125rem;
   text-decoration: none;
-  color: var(--accent);
+  color: var(--green);
 }
 
 /* ---------------------------------------------------------
-   TODO 2 (jij)
-   Maak .card:hover interessant. De transition staat er al klaar,
-   je hoeft alleen nog te bepalen wat er verandert.
-   Hint: border-color naar var(--accent) en translateY(-4px).
-   Probeer daarna eens wat er gebeurt als je het weglaat, zodat
-   je voelt waarom een transition zonder hover niets doet.
+   TODO 2 (you)
+   Make .card:hover interesting. The transition is already
+   waiting, you only decide what changes.
+   Hint: border-color to var(--green), translateY(-4px), and
+   box-shadow: 0 0 20px rgba(0, 255, 156, 0.12) for the glow.
+   Then remove the transition line for a second and reload, so
+   you feel why a transition without a hover state does nothing.
    --------------------------------------------------------- */
 
 /* =========================================================
@@ -268,8 +319,10 @@ a { color: inherit; }
 .contact__title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: clamp(2.75rem, 8vw, 5rem);
   line-height: 1;
+  color: var(--green);
+  text-shadow: var(--glow);
   margin: 0 0 2rem;
 }
 
@@ -280,12 +333,22 @@ a { color: inherit; }
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  font-family: var(--font-mono);
   font-size: 0.9rem;
 }
 
-.contact__list a { text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
-.contact__list a:hover { border-color: var(--accent); color: var(--accent); }
+.contact__list a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  color: var(--green-dim);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.contact__list a:hover {
+  color: var(--green);
+  border-color: var(--green);
+  text-shadow: var(--glow);
+}
 
 .footer {
   max-width: var(--max);
@@ -295,21 +358,20 @@ a { color: inherit; }
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--muted);
+  font-size: 0.7rem;
+  color: var(--green-dim);
   border-top: 1px solid var(--line);
 }
 
 /* =========================================================
-   TODO 3 (jij): responsive
-   Onder 720px breekt .split en .nav. Schrijf hier een media query.
+   TODO 3 (you): responsive
+   Below 720px .split and .nav fall apart. Write a media query.
    Hint:
    @media (max-width: 720px) {
      .split { grid-template-columns: ...; gap: ...; }
      .nav   { flex-direction: ...; }
      :root  { --pad: ...; }
    }
-   Test met F12 en dan de device toolbar. Doe dit voor je publiceert,
-   want minstens de helft van je bezoekers opent dit op een telefoon.
+   Test with F12 and the device toolbar before you push. At least
+   half your visitors will open this on a phone.
    ========================================================= */

@@ -1,0 +1,315 @@
+/* =========================================================
+   Design tokens. Verander deze waarden en de hele site verandert mee.
+   Dit is de reden dat je nooit kleuren hardcodeert in losse regels.
+   ========================================================= */
+:root {
+  --bg:        #0B0B0D;
+  --surface:   #131317;
+  --line:      #26262C;
+  --text:      #E8E4DC;
+  --muted:     #8B8780;
+  --accent:    #F2542D;
+
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body:    'Karla', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --max: 1080px;
+  --pad: 2rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+
+  /* Subtiel rasterpatroon op de achtergrond. Geen plaatje, puur CSS. */
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+a { color: inherit; }
+
+/* =========================================================
+   Herbruikbare onderdelen
+   ========================================================= */
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+
+.section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 6rem var(--pad);
+  border-top: 1px solid var(--line);
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 3rem;
+}
+
+.prose p { margin: 0 0 1.2rem; color: var(--muted); }
+
+/* =========================================================
+   Nav
+   ========================================================= */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem var(--pad);
+  background: rgba(11, 11, 13, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav__mark {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+.nav__list {
+  display: flex;
+  gap: 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+.nav__list a {
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+/* ---------------------------------------------------------
+   TODO 1 (jij)
+   Geef .nav__list a:hover de accentkleur, en teken een lijntje
+   dat van links naar rechts uitgroeit onder de link.
+   Hint: gebruik een ::after met height 1px, width 0, en laat
+   die naar 100% gaan op :hover. Zet position: relative op de <a>.
+   --------------------------------------------------------- */
+
+/* =========================================================
+   Hero
+   ========================================================= */
+.hero {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 8rem var(--pad) 6rem;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.75rem, 9vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.75rem;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero__intro {
+  max-width: 46ch;
+  color: var(--muted);
+  margin: 0 0 2.5rem;
+}
+
+.hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.btn--solid {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.btn--solid:hover { background: transparent; color: var(--accent); }
+
+/* =========================================================
+   Tags
+   ========================================================= */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tags li {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+/* =========================================================
+   Projectkaarten
+   ========================================================= */
+.section__title--wide { margin-bottom: 2.5rem; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.card__meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.card__text { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+.card__tags {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.card__tags li::before { content: '#'; opacity: 0.5; }
+
+.card__link {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  color: var(--accent);
+}
+
+/* ---------------------------------------------------------
+   TODO 2 (jij)
+   Maak .card:hover interessant. De transition staat er al klaar,
+   je hoeft alleen nog te bepalen wat er verandert.
+   Hint: border-color naar var(--accent) en translateY(-4px).
+   Probeer daarna eens wat er gebeurt als je het weglaat, zodat
+   je voelt waarom een transition zonder hover niets doet.
+   --------------------------------------------------------- */
+
+/* =========================================================
+   Contact + footer
+   ========================================================= */
+.section--contact { padding-bottom: 4rem; }
+
+.contact__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1;
+  margin: 0 0 2rem;
+}
+
+.contact__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.contact__list a { text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.contact__list a:hover { border-color: var(--accent); color: var(--accent); }
+
+.footer {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 2rem var(--pad) 4rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+
+/* =========================================================
+   TODO 3 (jij): responsive
+   Onder 720px breekt .split en .nav. Schrijf hier een media query.
+   Hint:
+   @media (max-width: 720px) {
+     .split { grid-template-columns: ...; gap: ...; }
+     .nav   { flex-direction: ...; }
+     :root  { --pad: ...; }
+   }
+   Test met F12 en dan de device toolbar. Doe dit voor je publiceert,
+   want minstens de helft van je bezoekers opent dit op een telefoon.
+   ========================================================= */
